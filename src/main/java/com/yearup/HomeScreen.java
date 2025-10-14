@@ -1,12 +1,16 @@
 package com.yearup;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class HomeScreen {
-    public static void ShowHomeScreen() {
+    public void ShowHomeScreen() {
         //options list = new optionslist();
         //list.loadFromCsv("transaction.csv");
-
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -20,22 +24,76 @@ public class HomeScreen {
             System.out.println("X. Exit");
             System.out.print("Pick here: ");
 
-            char choice = scanner.next().charAt(0);
+            String choice = scanner.nextLine().toLowerCase();
             switch (choice) {
-                case 'D' -> System.out.println("You chose to add a deposit");
-                case 'P' -> System.out.println("You chose to make a payment");
-                case 'L' -> System.out.println("You chose ledger");
-                case 'X' -> {
+
+                case "d" :
+                    System.out.println("\n\n==== ENTER A DEPOSIT ====");
+                    LocalDate dateD = LocalDate.now();
+                    LocalTime time = LocalTime.now();
+                    System.out.println("Enter the description");
+                    String description = scanner.nextLine();
+                    System.out.println("Enter vendor name");
+                    String vendor = scanner.nextLine();
+                    System.out.println("Enter the amount");
+                    double amount = Double.parseDouble(scanner.nextLine());
+                    //date|time|description|vendor|amount
+                    String entry = dateD +"|" + time + "|" + description + "|" + vendor + "|" + amount;
+                    FileInput(entry);
+                    break;
+
+
+                case "p" :
+                    System.out.println("You chose to make a payment");
+                    LocalDate dateP = LocalDate.now();
+                    LocalTime timeP = LocalTime.now();
+                    System.out.println("Enter the description");
+                    String descriptionP = scanner.nextLine();
+                    System.out.println("Enter vendor name");
+                    String vendorP = scanner.nextLine();
+                    System.out.println("Enter the amount");
+                    double amountP = -1 * Double.parseDouble(scanner.nextLine());
+                    //date|time|description|vendor|amount
+                    String entryP = dateP +"|" + timeP + "|" + descriptionP + "|" + vendorP + "|" + amountP;
+                    System.out.println(entryP);
+                    break;
+
+                case "l" :
+                    System.out.println("You chose ledger");
+                     break;
+
+                case "x" : {
                     System.out.println("Goodbye, Thank you!");
                     running = false;
                 }
 
-                default -> System.out.println("Invalid choice, try again!");
+//                default -> System.out.println("Invalid choice, try again!");
             }
         }
 
 
 
 
+
     }
+
+    public void FileInput(String input) {
+        try {
+            // create a FileWriter
+            FileWriter fileWriter = new FileWriter("transactions.csv", true);
+            // create a BufferedWriter
+            BufferedWriter bufWriter = new BufferedWriter(fileWriter);
+            // write to the file
+           bufWriter.append(input + "\n");
+
+            // close the writer
+            bufWriter.close();
+        }
+        catch (IOException e) {
+            System.out.println("ERROR:  An unexpected error occurred");
+            e.getStackTrace();
+        }
+
+    }
+
 }
