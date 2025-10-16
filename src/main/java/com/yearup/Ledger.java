@@ -32,17 +32,13 @@ public class Ledger {
                 case "a":
                     System.out.println("Displaying all entries");
                   displayAll(transactions);
+
                     break;
 
 
                 case "d":
                     System.out.println("Displaying all deposits");
-                    LocalDate dateP = LocalDate.now();
-                    LocalTime timeP = LocalTime.now();
-                    double amountP = -1 * Double.parseDouble(scanner.nextLine());
-                    //date|time|description|vendor|amount
-                    //String entryP = dateP +"|" + timeP + "|" + descriptionP + "|" + vendorP + "|" + amountP;
-                    //System.out.println(entryP);
+                    displayDeposits(transactions);
                     break;
 
                 case "p":
@@ -72,7 +68,7 @@ public class Ledger {
         try
         {
             // create a FileReader object connected to the File
-            FileReader fileReader = new FileReader("transaction.csv");
+            FileReader fileReader = new FileReader("transactions.csv");
             // create a BufferedReader to manage input stream
             BufferedReader bufReader = new BufferedReader(fileReader);
             String input;
@@ -97,10 +93,21 @@ public class Ledger {
         }
         return list;
     }
+
     private static void displayAll(List<Transactions> list)  {
-        for(var i = 0; i < list.size(); i++){
+        for(var i = list.size() - 1; i >=0; i--){
             System.out.println(list.get(i).toString());
 
+        }
+
+    }
+
+    private static void displayDeposits(List<Transactions> list){
+        for(var i = list.size() - 1; i >=0; i--){
+            if (list.get(i).getAmount() >=0){
+                System.out.println(list.get(i).toString());
+
+            }
         }
 
     }
