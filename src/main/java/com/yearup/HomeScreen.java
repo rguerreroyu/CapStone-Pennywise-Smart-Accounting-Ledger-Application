@@ -55,11 +55,13 @@ public class HomeScreen {
                     double amountP = -1 * Double.parseDouble(scanner.nextLine());
                     //date|time|description|vendor|amount
                     String entryP = dateP +"|" + timeP + "|" + descriptionP + "|" + vendorP + "|" + amountP;
-                    System.out.println(entryP);
+                    FileInput(entryP);
                     break;
 
                 case "l" :
                     System.out.println("You chose ledger");
+                    Ledger ledger = new Ledger();
+                    ledger.ShowLedger();
                      break;
 
                 case "x" : {
@@ -95,5 +97,6 @@ public class HomeScreen {
         }
 
     }
+
 
 }
