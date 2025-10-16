@@ -31,12 +31,7 @@ public class Ledger {
 
                 case "a":
                     System.out.println("Displaying all entries");
-                    LocalDate dateD = LocalDate.now();
-                    LocalTime time = LocalTime.now();
-                    double amount = Double.parseDouble(scanner.nextLine());
-                    //date|time|description|vendor|amount
-                    //String entry = dateD +"|" + time + "|" + description + "|" + vendor + "|" + amount;
-                    //FileInput(entry);
+                  displayAll(transactions);
                     break;
 
 
@@ -77,7 +72,7 @@ public class Ledger {
         try
         {
             // create a FileReader object connected to the File
-            FileReader fileReader = new FileReader("poem.txt");
+            FileReader fileReader = new FileReader("transaction.csv");
             // create a BufferedReader to manage input stream
             BufferedReader bufReader = new BufferedReader(fileReader);
             String input;
@@ -103,8 +98,8 @@ public class Ledger {
         return list;
     }
     private static void displayAll(List<Transactions> list)  {
-        for(var i = 0; i < list.size();){
-
+        for(var i = 0; i < list.size(); i++){
+            System.out.println(list.get(i).toString());
 
         }
 

@@ -61,15 +61,9 @@ public class Transactions {
 //public Transactions(LocalDate String, LocalTime time, String description, String Vendor, double amount){
 
 
-    @Override
+    @Override//this will be what will then print out the transaction
     public String toString() {
-        return "Transactions{" +
-                "description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
-                ", amount=" + amount +
-                ", time=" + time +
-                ", date=" + date +
-                '}';
+        return "\n" + date + "|" + time + "|" + description + "|" + vendor + "|" + amount ;
     }
 
 }
