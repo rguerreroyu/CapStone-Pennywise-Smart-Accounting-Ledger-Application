@@ -1,88 +1,112 @@
 package com.yearup;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ledger {
+    private static final String fileName = "transactions.csv";
+    private static final List<Transactions> transactions = reader();
 
-        public void ShowLedger() {
-            //options list = new optionslist();
-            //list.loadFromCsv("transaction.csv");
-//            All entries should show the newest entries first
-//            o A) All - Display all entries
-//            o D) Deposits - Display only the entries that are deposits into the
-//            account
-//            o P) Payments - Display only the negative entries (or payments)
-//            o R) Reports - A new screen that allows the user to run pre-defined
-//            reports or to run a custom search
-//§         1) Month To Date
-//§         2) Previous Month
-//§         3) Year To Date
-//§         4) Previous Year
-//        5) Search by Vendor - prompt the user for the vendor name
-//            and display all entries for that vendor
-//§ 0) Back - go back to the Ledger page
-//            o H) Home - go back to the home page
-            Scanner scanner = new Scanner(System.in);
-            boolean running = true;
+    public void ShowLedger() {
 
-            while (running) {
-                System.out.println("\\n\\==== LEDGER SCREEN ====\"");
-                System.out.println("Choose an option:");
-                System.out.println("A. Display all entries");
-                System.out.println("D. Display Deposits");
-                System.out.println("P. Display Payments");
-                System.out.println(("R. Reports"));
-                System.out.println(("H. Homescreen"));
-                System.out.print("Pick here: ");
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
 
-                String choice = scanner.nextLine().toLowerCase();
-                switch (choice) {
+        while (running) {
+            System.out.println("\\n\\==== LEDGER SCREEN ====\"");
+            System.out.println("Choose an option:");
+            System.out.println("A. Display all entries");
+            System.out.println("D. Display Deposits");
+            System.out.println("P. Display Payments");
+            System.out.println(("R. Reports"));
+            System.out.println(("H. Homescreen"));
+            System.out.print("Pick here: ");
 
-                    case "d" :
-                        System.out.println("Displaying all entries");
-                        LocalDate dateD = LocalDate.now();
-                        LocalTime time = LocalTime.now();
-                        System.out.println("Enter the description");
-                        String description = scanner.nextLine();
-                        System.out.println("Enter vendor name");
-                        String vendor = scanner.nextLine();
-                        System.out.println("Enter the amount");
-                        double amount = Double.parseDouble(scanner.nextLine());
-                        //date|time|description|vendor|amount
-                        String entry = dateD +"|" + time + "|" + description + "|" + vendor + "|" + amount;
-                        //FileInput(entry);
-                        break;
+            String choice = scanner.nextLine().toLowerCase();
+            switch (choice) {
+
+                case "a":
+                    System.out.println("Displaying all entries");
+                    LocalDate dateD = LocalDate.now();
+                    LocalTime time = LocalTime.now();
+                    double amount = Double.parseDouble(scanner.nextLine());
+                    //date|time|description|vendor|amount
+                    //String entry = dateD +"|" + time + "|" + description + "|" + vendor + "|" + amount;
+                    //FileInput(entry);
+                    break;
 
 
-                    case "p" :
-                        System.out.println("You chose to make a payment");
-                        LocalDate dateP = LocalDate.now();
-                        LocalTime timeP = LocalTime.now();
-                        System.out.println("Enter the description");
-                        String descriptionP = scanner.nextLine();
-                        System.out.println("Enter vendor name");
-                        String vendorP = scanner.nextLine();
-                        System.out.println("Enter the amount");
-                        double amountP = -1 * Double.parseDouble(scanner.nextLine());
-                        //date|time|description|vendor|amount
-                        String entryP = dateP +"|" + timeP + "|" + descriptionP + "|" + vendorP + "|" + amountP;
-                        System.out.println(entryP);
-                        break;
+                case "d":
+                    System.out.println("Displaying all deposits");
+                    LocalDate dateP = LocalDate.now();
+                    LocalTime timeP = LocalTime.now();
+                    double amountP = -1 * Double.parseDouble(scanner.nextLine());
+                    //date|time|description|vendor|amount
+                    //String entryP = dateP +"|" + timeP + "|" + descriptionP + "|" + vendorP + "|" + amountP;
+                    //System.out.println(entryP);
+                    break;
 
-                    case "l" :
-                        System.out.println("You chose ledger");
-                        break;
+                case "p":
+                    System.out.println("displaying all payments");
+                    break;
 
-                    case "x" : {
-                        System.out.println("Goodbye, Thank you!");
-                        running = false;
-                    }
 
-//                default -> System.out.println("Invalid choice, try again!");
+                case "r":
+                    System.out.println("Report page");
+                    break;
+
+                case "h": {
+                    System.out.println("Back to homescreen");
+                    running = false;
                 }
 
+
+//                default -> System.out.println("Invalid choice, try again!");
             }
+
+        }
+    }
+
+
+    private static List<Transactions>reader(){
+        List<Transactions>list= new ArrayList<Transactions>();
+        try
+        {
+            // create a FileReader object connected to the File
+            FileReader fileReader = new FileReader("poem.txt");
+            // create a BufferedReader to manage input stream
+            BufferedReader bufReader = new BufferedReader(fileReader);
+            String input;
+            // read until there is no more data
+            while((input = bufReader.readLine()) != null) {
+                String[] info = input.split("\\|");
+                LocalDate date = LocalDate.parse(info[0]);
+                LocalTime time = LocalTime.parse(info[1]);
+                String description = info[2];
+                String vendor = info[3];
+                double amount = Double.parseDouble(info[4]);
+                //System.out.println(input);
+                Transactions entry = new Transactions(date, time, description, vendor, amount);
+                list.add(entry);
+            }
+            // close the stream and release the resources
+            bufReader.close();
+        }
+        catch(IOException e) {
+            // display stack trace if there was an error
+            e.printStackTrace();
+        }
+        return list;
+    }
+    private static void displayAll(List<Transactions> list)  {
+        for(var i = 0; i < list.size();){
+
+
+        }
+
     }
 }
