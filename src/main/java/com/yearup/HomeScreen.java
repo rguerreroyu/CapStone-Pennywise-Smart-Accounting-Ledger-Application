@@ -8,9 +8,18 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class HomeScreen {
+
+    public static void Loading(String message) {
+        System.out.println("\n" + message);
+        try {
+            Thread.sleep(800);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
     public void ShowWelcomeScreen(){
-        System.out.println("Welcome to...");
-        System.out.println(
+        Loading("Welcome to...");
+        Loading(
                 " ██▓███     ▓█████     ███▄    █     ███▄    █    ▓██   ██▓    █     █░    ██▓     ██████    ▓█████ \n" +
                         "▓██░  ██▒   ▓█   ▀     ██ ▀█   █     ██ ▀█   █     ▒██  ██▒   ▓█░ █ ░█░   ▓██▒   ▒██    ▒    ▓█   ▀ \n" +
                         "▓██░ ██▓▒   ▒███      ▓██  ▀█ ██▒   ▓██  ▀█ ██▒     ▒██ ██░   ▒█░ █ ░█    ▒██▒   ░ ▓██▄      ▒███   \n" +
@@ -19,7 +28,7 @@ public class HomeScreen {
                         "▒▓▒░ ░  ░   ░░ ▒░ ░   ░ ▒░   ▒ ▒    ░ ▒░   ▒ ▒       ██▒▒▒    ░ ▓░▒ ▒     ░▓     ▒ ▒▓▒ ▒ ░   ░░ ▒░ ░\n" +
                         "░▒ ░         ░ ░  ░   ░ ░░   ░ ▒░   ░ ░░   ░ ▒░    ▓██ ░▒░      ▒ ░ ░      ▒ ░   ░ ░▒  ░ ░    ░ ░  ░\n" +
                         "░░             ░         ░   ░ ░       ░   ░ ░     ▒ ▒ ░░       ░   ░      ▒ ░   ░  ░  ░        ░   \n");
-        System.out.println("\nPennywise: Your Smart Accounting Ledger 🎈");
+        Loading("\nPennywise: Your Smart Accounting Ledger 🎈");
 
         //System.out.println("\nPress ENTER to continue...");
     }
@@ -38,11 +47,19 @@ public class HomeScreen {
 
 
 
-            System.out.println("Choose an option:");
+            Loading ("Choose an option:");
+
             System.out.println("D. Add Deposit");
+            System.out.println("===========");
+
             System.out.println("P. Make payment (Debit)");
+            System.out.println("===========");
+
             System.out.println("L. Ledger");
+            System.out.println("==========+");
+
             System.out.println("X. Exit");
+
             System.out.print("Pick here: ");
 
             String choice = scanner.nextLine().toLowerCase();
