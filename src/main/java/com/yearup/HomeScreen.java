@@ -52,6 +52,7 @@ public class HomeScreen {
                     System.out.println("\n\n==== ENTER A DEPOSIT ====");
                     LocalDate dateD = LocalDate.now();
                     LocalTime time = LocalTime.now();
+
                     System.out.println("Enter the description");
                     String description = scanner.nextLine();
                     System.out.println("Enter vendor name");
@@ -59,8 +60,9 @@ public class HomeScreen {
                     System.out.println("Enter the amount");
                     double amount = Double.parseDouble(scanner.nextLine());
                     //date|time|description|vendor|amount
-                    String entry = dateD +"|" + time + "|" + description + "|" + vendor + "|" + amount;
-                    FileInput(entry);
+                    String deposit = dateD +"|" + time + "|" + description + "|" + vendor + "|" + amount;
+                    FileInput(deposit);
+
                     break;
 
 
@@ -106,12 +108,12 @@ public class HomeScreen {
             FileWriter fileWriter = new FileWriter("transactions.csv", true);
             // create a BufferedWriter
             BufferedWriter bufWriter = new BufferedWriter(fileWriter);
-            // write to the file
-           bufWriter.append(input + "\n");
-
-            // close the writer
+            bufWriter.append(input).append("\n");
+            bufWriter.flush();
             bufWriter.close();
         }
+
+
         catch (IOException e) {
             System.out.println("ERROR:  An unexpected error occurred");
             e.getStackTrace();

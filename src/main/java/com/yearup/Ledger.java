@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Ledger {
     private static final String fileName = "transactions.csv";
-    private static final List<Transactions> transactions = reader();
 
     public void ShowLedger() {
 
@@ -27,23 +26,23 @@ public class Ledger {
             System.out.print("Pick here: ");
 
             String choice = scanner.nextLine().toLowerCase();
+
             switch (choice) {
 
                 case "a":
                     System.out.println("Displaying all entries");
-                  displayAll(transactions);
-
+                    displayAll(reader());
                     break;
 
 
                 case "d":
                     System.out.println("Displaying all deposits");
-                    displayDeposits(transactions);
+                    displayDeposits(reader());
                     break;
 
                 case "p":
                     System.out.println("displaying all payments");
-                    displayPayments(transactions);
+                    displayPayments(reader());
                     break;
 
 
@@ -66,7 +65,7 @@ public class Ledger {
     }
 
 
-    static List<Transactions>reader(){
+    public static List<Transactions>reader(){
         List<Transactions>list= new ArrayList<Transactions>();
         try
         {
@@ -106,7 +105,7 @@ public class Ledger {
     }
 
     private static void displayDeposits(List<Transactions> list){
-        for(var i = list.size() - 1; i <=0; i--){
+        for(var i = list.size() - 1; i >= 0; i--){
             if (list.get(i).getAmount() >=0){
                 System.out.println(list.get(i).toString());
 

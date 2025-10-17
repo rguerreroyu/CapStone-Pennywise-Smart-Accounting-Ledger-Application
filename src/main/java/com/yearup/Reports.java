@@ -6,11 +6,11 @@ import java.time.Year;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.yearup.Ledger.reader;
+
+//import static com.yearup.Ledger.reader;
 
 public class Reports {
     private static final String fileName = "transactions.csv";
-    private static final List<Transactions> transactions = reader();
 
     public void ShowReports() {
 
@@ -42,29 +42,29 @@ public class Reports {
 
                 case "1":
                     System.out.println("Displaying entries by Month to Date");
-                    displayMonthToDate(transactions);
+                    displayMonthToDate(Ledger.reader());
                     break;
 
 
                 case "2":
                     System.out.println("Displaying entries by Previous Month");
-                    displayPreviousMonth(transactions);
+                    displayPreviousMonth(Ledger.reader());
                     break;
 
                 case "3":
                     System.out.println("Displaying entries by Year to Date ");
-                    displayYearToDate(transactions);
+                    displayYearToDate(Ledger.reader());
                     break;
 
 
                 case "4":
                     System.out.println("Displaying entries by Previous Year");
-                    displayPreviousYear(transactions);
+                    displayPreviousYear(Ledger.reader());
                     break;
 
                 case "5":
                     System.out.println("Search entries by Vendor");
-                    displayByVendor(transactions);
+                    displayByVendor(Ledger.reader());
                     break;
 
                 case "0":
@@ -125,7 +125,6 @@ public class Reports {
         for (var i = list.size() - 1; i >= 0; i--) {
             LocalDate transactionDate = list.get(i).getDate();
 
-            // Check if the year matches AND the date is before or equal to today
             if (transactionDate.getYear() == currentYear.getValue() && !transactionDate.isAfter(today)) {
                 System.out.println(list.get(i));
             }
