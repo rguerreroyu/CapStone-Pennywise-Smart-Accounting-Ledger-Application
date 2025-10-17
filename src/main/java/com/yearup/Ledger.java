@@ -72,8 +72,6 @@ public class Ledger {
                     running = false;
                 }
 
-
-//                default -> System.out.println("Invalid choice, try again!");
             }
 
         }
