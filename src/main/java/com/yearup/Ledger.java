@@ -23,7 +23,7 @@ public class Ledger {
             System.out.println("D. Display Deposits");
             System.out.println("P. Display Payments");
             System.out.println(("R. Reports"));
-            System.out.println(("H. Homescreen"));
+            System.out.println(("H. Back to Homescreen"));
             System.out.print("Pick here: ");
 
             String choice = scanner.nextLine().toLowerCase();
@@ -43,11 +43,14 @@ public class Ledger {
 
                 case "p":
                     System.out.println("displaying all payments");
+                    displayPayments(transactions);
                     break;
 
 
                 case "r":
                     System.out.println("Report page");
+                    Reports reports = new Reports();
+                    reports.ShowReports();
                     break;
 
                 case "h": {
@@ -63,7 +66,7 @@ public class Ledger {
     }
 
 
-    private static List<Transactions>reader(){
+    static List<Transactions>reader(){
         List<Transactions>list= new ArrayList<Transactions>();
         try
         {
@@ -103,8 +106,17 @@ public class Ledger {
     }
 
     private static void displayDeposits(List<Transactions> list){
-        for(var i = list.size() - 1; i >=0; i--){
+        for(var i = list.size() - 1; i <=0; i--){
             if (list.get(i).getAmount() >=0){
+                System.out.println(list.get(i).toString());
+
+            }
+        }
+
+    }
+    private static void displayPayments(List<Transactions> list){
+        for(var i = list.size() - 1; i >=0; i--){
+            if (list.get(i).getAmount() <0){
                 System.out.println(list.get(i).toString());
 
             }
