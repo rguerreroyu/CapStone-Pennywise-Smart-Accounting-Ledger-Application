@@ -67,6 +67,8 @@ public class Ledger {
 
                 case "h": {
                     System.out.println("Back to homescreen");
+                    HomeScreen home = new HomeScreen();
+                    home.ShowHomeScreen();
                     running = false;
                 }
 

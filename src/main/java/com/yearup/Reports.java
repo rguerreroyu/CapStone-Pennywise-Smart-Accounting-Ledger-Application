@@ -89,8 +89,8 @@ public class Reports {
 
                 case "h": {
                     System.out.println("Back to homescreen");
-                    HomeScreen homeScreen = new HomeScreen();
-                    homeScreen.ShowHomeScreen();
+                    HomeScreen home = new HomeScreen();
+                    home.ShowHomeScreen();
                     running = false;
                 }
 

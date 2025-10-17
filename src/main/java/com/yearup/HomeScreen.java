@@ -5,11 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Scanner;
 
 public class HomeScreen {
 
     public static void Loading(String message) {
+
         System.out.println("\n" + message);
         try {
             Thread.sleep(800);
@@ -28,7 +31,7 @@ public class HomeScreen {
                         "▒▓▒░ ░  ░   ░░ ▒░ ░   ░ ▒░   ▒ ▒    ░ ▒░   ▒ ▒       ██▒▒▒    ░ ▓░▒ ▒     ░▓     ▒ ▒▓▒ ▒ ░   ░░ ▒░ ░\n" +
                         "░▒ ░         ░ ░  ░   ░ ░░   ░ ▒░   ░ ░░   ░ ▒░    ▓██ ░▒░      ▒ ░ ░      ▒ ░   ░ ░▒  ░ ░    ░ ░  ░\n" +
                         "░░             ░         ░   ░ ░       ░   ░ ░     ▒ ▒ ░░       ░   ░      ▒ ░   ░  ░  ░        ░   \n");
-        Loading("\nPennywise: Your Smart Accounting Ledger 🎈");
+        Loading("\nPennyWise: Your Smart Accounting Ledger 🎈");
 
         //System.out.println("\nPress ENTER to continue...");
     }
@@ -79,6 +82,7 @@ public class HomeScreen {
                     //date|time|description|vendor|amount
                     String deposit = dateD +"|" + time + "|" + description + "|" + vendor + "|" + amount;
                     FileInput(deposit);
+                    System.out.println("Printed to file");
 
                     break;
 
@@ -106,7 +110,7 @@ public class HomeScreen {
 
                 case "x" : {
                     System.out.println("Goodbye, Thank you!");
-                    running = false;
+                    System.exit(0);
                 }
 
 //                default -> System.out.println("Invalid choice, try again!");
