@@ -50,13 +50,13 @@ public class HomeScreen {
             Loading ("Choose an option:");
 
             System.out.println("D. Add Deposit");
-            System.out.println("===========");
+            System.out.println("=====================");
 
             System.out.println("P. Make payment (Debit)");
-            System.out.println("===========");
+            System.out.println("=====================");
 
             System.out.println("L. Ledger");
-            System.out.println("==========+");
+            System.out.println("=====================");
 
             System.out.println("X. Exit");
 

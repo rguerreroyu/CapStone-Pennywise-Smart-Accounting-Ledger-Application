@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Ledger {
     private static final String fileName = "transactions.csv";
+    List<Transactions> transactions = new ArrayList<>();
 
     public void ShowLedger() {
 
@@ -16,12 +17,16 @@ public class Ledger {
         boolean running = true;
 
         while (running) {
-            System.out.println("\\n\\==== LEDGER SCREEN ====\"");
+            System.out.println("\n==== LEDGER SCREEN ====");
             System.out.println("Choose an option:");
             System.out.println("A. Display all entries");
+            System.out.println("====================");
             System.out.println("D. Display Deposits");
+            System.out.println("====================");
             System.out.println("P. Display Payments");
+            System.out.println("====================");
             System.out.println(("R. Reports"));
+            System.out.println("====================");
             System.out.println(("H. Back to Homescreen"));
             System.out.print("Pick here: ");
 
@@ -31,18 +36,18 @@ public class Ledger {
 
                 case "a":
                     System.out.println("Displaying all entries");
-                    displayAll(reader());
+                    displayAll(transactions);
                     break;
 
 
                 case "d":
                     System.out.println("Displaying all deposits");
-                    displayDeposits(reader());
+                    displayDeposits(transactions);
                     break;
 
                 case "p":
                     System.out.println("displaying all payments");
-                    displayPayments(reader());
+                    displayPayments(transactions);
                     break;
 
 
