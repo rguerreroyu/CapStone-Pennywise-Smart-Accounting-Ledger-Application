@@ -9,7 +9,15 @@ import java.util.Scanner;
 
 public class Ledger {
     private static final String fileName = "transactions.csv";
-    List<Transactions> transactions = new ArrayList<>();
+    List<Transactions> transactions = reader();
+    public static void Loading(String message) {
+        System.out.println("\n" + message);
+        try {
+            Thread.sleep(800);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 
     public void ShowLedger() {
 
@@ -17,7 +25,7 @@ public class Ledger {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n==== LEDGER SCREEN ====");
+            Loading("\n==== LEDGER SCREEN ====");
             System.out.println("Choose an option:");
             System.out.println("A. Display all entries");
             System.out.println("====================");

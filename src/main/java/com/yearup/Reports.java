@@ -10,6 +10,14 @@ import java.util.Scanner;
 //import static com.yearup.Ledger.reader;
 
 public class Reports {
+    public static void Loading(String message) {
+        System.out.println("\n" + message);
+        try {
+            Thread.sleep(800);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
     private static final String fileName = "transactions.csv";
 
     public void ShowReports() {
@@ -26,14 +34,20 @@ public class Reports {
 //§ 0) Back - go back to the Ledger page
 //o H) Home - go back to the home page
         while (running) {
-            System.out.println("\\==== REPORTS SCREEN ====\"");
+            Loading("\n==== REPORTS SCREEN ====\"");
             System.out.println("Choose an option to search by:");
-            System.out.println("1. Search by Month To Date ");
-            System.out.println("2. Search by Previous Month");
-            System.out.println("3. Search by Year to Date");
-            System.out.println("4. Search by Previous Year ");
+           Loading("1.Month To Date ");
+            System.out.println("===============");
+            System.out.println("2.Previous Month");
+            System.out.println("===============");
+            System.out.println("3.Year to Date");
+            System.out.println("===============");
+            System.out.println("4.Previous Year ");
+            System.out.println("===============");
             System.out.println("5. Search by Vendor ");
+            System.out.println("===============");
             System.out.println(("0. Back to Ledger"));
+            System.out.println("===============");
             System.out.println(("H. Back to Homescreen"));
             System.out.print("Pick here: ");
 
@@ -75,7 +89,8 @@ public class Reports {
 
                 case "h": {
                     System.out.println("Back to homescreen");
-
+                    HomeScreen homeScreen = new HomeScreen();
+                    homeScreen.ShowHomeScreen();
                     running = false;
                 }
 
